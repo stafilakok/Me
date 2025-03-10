@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Портфолио разработчика-спортсмена</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Подключение Vue.js через CDN -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- Хедер -->
+      <header>
+        <nav>
+          <div class="logo">{{ name }}</div>
+          <ul>
+            <li><a href="#about">Обо мне</a></li>
+            <li><a href="#skills">Навыки</a></li>
+            <li><a href="#contact">Контакты</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Главная секция с ДНК-анимацией -->
+      <section class="hero">
+        <div class="hero-content">
+          <h1>{{ name }}</h1>
+          <p>{{ title }}</p>
+        </div>
+        <div class="dna-animation" ref="dnaContainer"></div>
+      </section>
+
+      <!-- Секция "Обо мне" -->
+      <section id="about" class="about">
+        <h2>Обо мне</h2>
+        <div class="about-content">
+          <div class="about-text">
+            <p>{{ about }}</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Секция навыков -->
+      <section id="skills" class="skills">
+        <h2>Мои навыки</h2>
+        <div class="skills-grid">
+          <div v-for="skill in skills" :key="skill.name" class="skill-card">
+            <h3>{{ skill.name }}</h3>
+            <div class="skill-level">
+              <div
+                class="skill-progress"
+                :style="{ width: skill.level + '%' }"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Контакты -->
+      <section id="contact" class="contact">
+        <h2>Свяжитесь со мной</h2>
+        <div class="contact-info">
+          <div
+            v-for="contact in contacts"
+            :key="contact.type"
+            class="contact-item"
+          >
+            <h3>{{ contact.type }}</h3>
+            <p>{{ contact.value }}</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Футер -->
+      <footer>
+        <p>
+          &copy; {{ new Date().getFullYear() }} {{ name }}. Все права защищены.
+        </p>
+      </footer>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
